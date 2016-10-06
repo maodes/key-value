@@ -33,6 +33,7 @@ module.exports = {
         'inject'     : true,
         'beforeEach' : true,
         'afterEach'  : true,
-        'expect'     : true
+        'expect'     : true,
+        'sinon'      : true
     }
 };
