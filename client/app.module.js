@@ -2,6 +2,8 @@
 	'use strict';
 
 	angular.module( 'app', [
-		'ui.router'
+		'ui.router',
+		'app.routes',
+		'app.home'
 	] );
 } )();

@@ -16,6 +16,7 @@ app.use( bodyParser.json() );                                     // parse appli
 // app.use( bodyParser.json( { type: 'application/vnd.api+json' } ) ); // parse application/vnd.api+json as json
 app.use( methodOverride() );
 app.use( '/bower_components', express.static( 'bower_components' ) );
+
 // listen (start app with node server.js) ======================================
 app.listen( 8080 );
 console.log( 'App listening on port 8080' );
