@@ -16,10 +16,10 @@
 			self.year       = '';
 			self.timePeriod = [ 'am', 'pm' ];
 			// get values from factory so that controller won't be bloated
-			self.months     = homeFactory.getMonths();
-			self.days       = homeFactory.getDays();
-			self.hours      = homeFactory.getHours();
-			self.seconds    = homeFactory.getSeconds();
+			self.months  = homeFactory.getMonths();
+			self.days    = homeFactory.getDays();
+			self.hours   = homeFactory.getHours();
+			self.seconds = homeFactory.getSeconds();
 
 			self.submitEntry = submitEntry;
 		}

@@ -1,1 +1,33 @@
-here
+<div class="main-container">
+	<div class="well well-lg">
+		<h3>Key Value Store</h3>
+		<div class="io-container">
+			<div class="row io-inner-container">
+				<div class="col-lg-6 io-left-section">
+					<h4>Input</h4>
+					<hr>
+					<form data-ng-submit="vm.submit()">
+						<div class="form-group">
+							<label>Key</label>
+							<input class="form-control" placeholder="Key" data-ng-model="vm.key">
+						</div>
+						<div class="form-group">
+							<label>Value</label>
+							<input class="form-control"  placeholder="Value" data-ng-model="vm.value">
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" data-ng-model="vm.includeDate"> Include Date
+							</label>
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+				</div>
+				<div class="col-lg-6">
+					<h4>Output</h4>
+					<hr>
+				</div> 
+			</div>
+		</div>
+	</div>
+</div>
