@@ -3,11 +3,14 @@
 
 	function homeFactory () {
 		return {
-			'submit'     : angular.noop,
-			'getHours'   : angular.noop,
-			'getSeconds' : angular.noop,
-			'getMonths'  : angular.noop,
-			'getDays'    : angular.noop
+			'submitEntry'     : angular.noop,
+			'getEntry'        : angular.noop,
+			'saveUpdateEntry' : angular.noop,
+			'convertToUTC'    : angular.noop,
+			'getHours'        : angular.noop,
+			'getSeconds'      : angular.noop,
+			'getMonths'       : angular.noop,
+			'getDays'         : angular.noop
 		};
 	}
 

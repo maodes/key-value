@@ -30,10 +30,10 @@ describe( 'HomeCtrl unit test', function () {
 		} );
 	} );
 
-	describe( 'submit method', function () {
+	describe( 'submitEntry method', function () {
 		it( 'should trigger api', function () {
-			var spy = sinon.spy( factory, 'submit' );
-			controller.submit();
+			var spy = sinon.spy( factory, 'submitEntry' );
+			controller.submitEntry();
 			expect( spy.callCount ).equal( 1 );
 		} );
 	} );

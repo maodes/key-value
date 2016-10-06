@@ -4,8 +4,8 @@
 	function HomeCtrl ( homeFactory ) {
 		var self = this;
 
-		function submit () {
-			homeFactory.submit();
+		function submitEntry () {
+			homeFactory.submitEntry();
 		}
 
 		function activate () {
@@ -20,7 +20,7 @@
 			self.hours      = homeFactory.getHours();
 			self.seconds    = homeFactory.getSeconds();
 
-			self.submit = submit;
+			self.submitEntry = submitEntry;
 		}
 
 		// expose activate for test purposes
