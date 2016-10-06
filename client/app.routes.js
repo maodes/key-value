@@ -1,14 +1,14 @@
 ( function () {
-	
+
 	'use strict';
 
 	function config ( $stateProvider, $urlRouterProvider ) {
 		$urlRouterProvider.otherwise( '/' );
 		$stateProvider.state( 'home', {
 			'url'          : '/',
-			'templateUrl'  : '/home/home.html'
-			// 'controller'   : 'HomeCtrl',
-			// 'controllerAs' : 'vm'
+			'templateUrl'  : '/home/home.html',
+			'controller'   : 'HomeCtrl',
+			'controllerAs' : 'vm'
 		} );
 	}
 
