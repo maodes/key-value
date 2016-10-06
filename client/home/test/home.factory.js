@@ -10,7 +10,7 @@ describe( 'homeFactory test', function () {
 	} ) );
 
 	describe( 'getMonths method', function () {
-		it.skip( 'should return an array that contains months', function () {
+		it( 'should return an array that contains months', function () {
 			var data = factory.getMonths();
 
 			expect( data.length ).equal( 12 );
@@ -30,7 +30,7 @@ describe( 'homeFactory test', function () {
 	} );
 
 	describe( 'getDays method', function () {
-		it.skip( 'should return an array that contains days', function () {
+		it( 'should return an array that contains days', function () {
 			var data = factory.getDays();
 
 			expect( data.length ).equal( 7 );
@@ -45,16 +45,16 @@ describe( 'homeFactory test', function () {
 	} );
 
 	describe( 'getHours method', function () {
-		it.skip( 'should return an array that contains hours', function () {
-			var data = factory.getDays();
+		it( 'should return an array that contains hours', function () {
+			var data = factory.getHours();
 
 			expect( data.length ).equal( 12 );
 		} );
 	} );
 
 	describe( 'getSeconds method', function () {
-		it.skip( 'should return an array that contains hours', function () {
-			var data = factory.getDays();
+		it( 'should return an array that contains hours', function () {
+			var data = factory.getSeconds();
 
 			expect( data.length ).equal( 60 );
 		} );
@@ -74,7 +74,7 @@ describe( 'homeFactory test', function () {
 		} );
 
 		it.skip( 'should trigger convertToUTC method when time and date are present', function () {
-			var spy = sinon.spy( factory, 'convertToUTC' );
+			var spy  = sinon.spy( factory, 'convertToUTC' );
 			var data = {
 				'key'      : 'Sith',
 				'value'    : 'Anakin',
@@ -86,7 +86,7 @@ describe( 'homeFactory test', function () {
 		} );
 
 		it.skip( 'should trigger saveUpdateEntry when key and value or timestamp are present', function () {
-			var spy = sinon.spy( factory, 'saveUpdateEntry' );
+			var spy  = sinon.spy( factory, 'saveUpdateEntry' );
 			var data = {
 				'key'   : 'Jedi',
 				'value' : 'Obi Wan'
@@ -97,7 +97,7 @@ describe( 'homeFactory test', function () {
 		} );
 
 		it.skip( 'should trigger getEntry when only key ( with/without timestamp) is provided', function () {
-			var spy = sinon.spy( factory, 'saveUpdateEntry' );
+			var spy  = sinon.spy( factory, 'saveUpdateEntry' );
 			var data = {
 				'key' : 'Jedi'
 			};
