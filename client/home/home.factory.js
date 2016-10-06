@@ -36,12 +36,31 @@
 			return moment( date ).unix();
 		}
 
+		function cleanData ( data ) {
+			if ( data.value === '' ) {
+				delete data.value;
+			}
+
+			if ( data.dateTime === '' ) {
+				delete data.dateTime;
+			}
+
+			return data;
+		}
+
 		function submitEntry ( data ) {
 			var apiActions = {
 				'0' : this.saveUpdateEntry,
 				'1' : this.getEntry
 			};
 
+			data = cleanData( data );
+
+			if ( data.dateTime ) {
+				data.dateTime = convertToUTC( data.dateTime );
+			}
+
+			// TODO: this should return a promise
 			apiActions[ Number( !data.value ) ]();
 		}
 
@@ -53,7 +72,8 @@
 			'getHours'        : getHours,
 			'getSeconds'      : getSeconds,
 			'getMonths'       : getMonths,
-			'getDays'         : getDays
+			'getDays'         : getDays,
+			'cleanData'       : cleanData
 		};
 	}
 

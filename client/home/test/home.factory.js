@@ -73,23 +73,12 @@ describe( 'homeFactory test', function () {
 			expect( factory.submitEntry ).not.equal( undefined );
 		} );
 
-		it.skip( 'should trigger convertToUTC method when time and date are present', function () {
-			var spy  = sinon.spy( factory, 'convertToUTC' );
-			var data = {
-				'key'      : 'Sith',
-				'value'    : 'Anakin',
-				'dateTime' : 'Oct 6 2016'
-			};
-
-			factory.submitEntry( data );
-			expect( spy.callCount ).equal( 1 );
-		} );
-
 		it( 'should trigger saveUpdateEntry when key and value or timestamp are present', function () {
 			var spy  = sinon.spy( factory, 'saveUpdateEntry' );
 			var data = {
-				'key'   : 'Jedi',
-				'value' : 'Obi Wan'
+				'key'      : 'Jedi',
+				'value'    : 'Obi Wan',
+				'dateTime' : 'Oct 6 2016'
 			};
 
 			factory.submitEntry( data );
@@ -110,6 +99,27 @@ describe( 'homeFactory test', function () {
 	describe( 'convertToUTC method', function () {
 		it( 'should convert date into utc format', function () {
 			expect( factory.convertToUTC( 'Oct 6 2016' ) ).equal( 1475683200 );
+		} );
+	} );
+
+	describe( 'cleanData method', function () {
+		it( 'should remove value if it is an empty string', function () {
+			var data = {
+				'key'   : 'Yoda',
+				'value' : ''
+			};
+
+			expect( factory.cleanData( data ).value ).equal( undefined );
+		} );
+
+		it( 'should remove dateTime if it is an empty string', function () {
+			var data = {
+				'key'      : 'Yoda',
+				'value'    : 'Train you must',
+				'dateTime' : ''
+			};
+
+			expect( factory.cleanData( data ).dateTime ).equal( undefined );
 		} );
 	} );
 } );
