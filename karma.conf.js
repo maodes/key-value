@@ -21,6 +21,8 @@ module.exports = function ( config ) {
 			'bower_components/bootstrap/dist/js/bootstrap.min.js',
 			'bower_components/less/dist/less.min.js',
 			'bower_components/angular-mocks/angular-mocks.js',
+			'bower_components/moment/min/moment.min.js',
+			'bower_components/angular-moment/angular-moment.min.js',
 
 			'client/app.module.js',
 			'client/*.js',

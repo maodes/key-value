@@ -108,8 +108,8 @@ describe( 'homeFactory test', function () {
 	} );
 
 	describe( 'convertToUTC method', function () {
-		it.skip( 'should convert date into utc format', function () {
-			expect( factory.convertToUTC( 'Oct 10 2016' ) ).equal( '1475683200' );
+		it( 'should convert date into utc format', function () {
+			expect( factory.convertToUTC( 'Oct 6 2016' ) ).equal( 1475683200 );
 		} );
 	} );
 } );

@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 
-	function homeFactory () {
+	function homeFactory ( moment ) {
 		function getMonths () {
 			return [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
 		}
@@ -32,11 +32,15 @@
 			return hrArr;
 		}
 
+		function convertToUTC ( date ) {
+			return moment( date ).unix();
+		}
+
 		return {
 			'submitEntry'     : angular.noop,
 			'getEntry'        : angular.noop,
 			'saveUpdateEntry' : angular.noop,
-			'convertToUTC'    : angular.noop,
+			'convertToUTC'    : convertToUTC,
 			'getHours'        : getHours,
 			'getSeconds'      : getSeconds,
 			'getMonths'       : getMonths,
