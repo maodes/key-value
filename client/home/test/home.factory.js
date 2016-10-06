@@ -81,28 +81,28 @@ describe( 'homeFactory test', function () {
 				'dateTime' : 'Oct 6 2016'
 			};
 
-			factory.submit( data );
+			factory.submitEntry( data );
 			expect( spy.callCount ).equal( 1 );
 		} );
 
-		it.skip( 'should trigger saveUpdateEntry when key and value or timestamp are present', function () {
+		it( 'should trigger saveUpdateEntry when key and value or timestamp are present', function () {
 			var spy  = sinon.spy( factory, 'saveUpdateEntry' );
 			var data = {
 				'key'   : 'Jedi',
 				'value' : 'Obi Wan'
 			};
 
-			factory.submit( data );
+			factory.submitEntry( data );
 			expect( spy.callCount ).equal( 1 );
 		} );
 
-		it.skip( 'should trigger getEntry when only key ( with/without timestamp) is provided', function () {
-			var spy  = sinon.spy( factory, 'saveUpdateEntry' );
+		it( 'should trigger getEntry when only key ( with/without timestamp) is provided', function () {
+			var spy  = sinon.spy( factory, 'getEntry' );
 			var data = {
 				'key' : 'Jedi'
 			};
 
-			factory.submit( data );
+			factory.submitEntry( data );
 			expect( spy.callCount ).equal( 1 );
 		} );
 	} );

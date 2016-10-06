@@ -5,6 +5,7 @@
 		var self = this;
 
 		function submitEntry () {
+			// TODO: factory call in the next line should return a promise
 			homeFactory.submitEntry();
 		}
 

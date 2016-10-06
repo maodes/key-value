@@ -36,8 +36,17 @@
 			return moment( date ).unix();
 		}
 
+		function submitEntry ( data ) {
+			var apiActions = {
+				'0' : this.saveUpdateEntry,
+				'1' : this.getEntry
+			};
+
+			apiActions[ Number( !data.value ) ]();
+		}
+
 		return {
-			'submitEntry'     : angular.noop,
+			'submitEntry'     : submitEntry,
 			'getEntry'        : angular.noop,
 			'saveUpdateEntry' : angular.noop,
 			'convertToUTC'    : convertToUTC,
