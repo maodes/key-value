@@ -41,4 +41,18 @@ describe( 'HomeCtrl unit test', function () {
 			expect( spy.callCount ).equal( 1 );
 		} );
 	} );
+
+	describe( 'includeDateTime method', function () {
+		it( 'should include dateTime when includeDate is checked', function () {
+			var data = {};
+
+			controller.includeDate    = true;
+			controller.date           = '2016-10-06T17:00:00+08:00';
+			controller.selectedHour   = '1';
+			controller.selectedMin    = '09';
+			controller.selectedPeriod = 'AM';
+			controller.includeDateTime( data );
+			expect( data.dateTime ).not.equal( undefined );
+		} );
+	} );
 } );

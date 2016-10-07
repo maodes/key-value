@@ -4,9 +4,21 @@
 	function HomeCtrl ( homeFactory ) {
 		var self = this;
 
+		function includeDateTime ( data ) {
+			if ( self.includeDate ) {
+				data.dateTime = homeFactory.convertToDisplay( self.date ) + ' ' + self.selectedHour + ':' + self.selectedMin + ' ' + self.selectedPeriod;
+			}
+		}
+
 		function submitEntry () {
+			var data = {
+				'key'   : self.key,
+				'value' : self.value
+			};
+
+			includeDateTime( data );
 			// TODO: factory call in the next line should return a promise
-			homeFactory.submitEntry();
+			homeFactory.submitEntry( data );
 		}
 
 		function getDate () {
@@ -25,8 +37,9 @@
 			self.hours   = homeFactory.getHours();
 			self.minutes = homeFactory.getMinutes();
 
-			self.submitEntry = submitEntry;
-			self.getDate     = getDate;
+			self.submitEntry     = submitEntry;
+			self.getDate         = getDate;
+			self.includeDateTime = includeDateTime;
 		}
 
 		// expose activate for test purposes

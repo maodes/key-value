@@ -8,6 +8,10 @@
 			var i      = 0;
 
 			for( i; i < 60; i++ ) {
+				if ( i < 10 ) {
+					i = '0' + i;
+				}
+
 				secArr.push( i );
 			}
 
@@ -26,7 +30,7 @@
 		}
 
 		function convertToUTC ( date ) {
-			return moment( date ).unix();
+			return moment( date ).format( 'X' );
 		}
 
 		function cleanData ( data ) {
@@ -34,10 +38,16 @@
 				delete data.value;
 			}
 
-			if ( data.dateTime === '' ) {
-				delete data.dateTime;
-			}
+			return data;
+		}
 
+		function saveUpdateEntry ( data ) {
+			// TODO: make api call here
+			return data;
+		}
+
+		function getEntry ( data ) {
+			// TODO: make api call here
 			return data;
 		}
 
@@ -63,8 +73,8 @@
 
 		return {
 			'submitEntry'      : submitEntry,
-			'getEntry'         : angular.noop,
-			'saveUpdateEntry'  : angular.noop,
+			'getEntry'         : getEntry,
+			'saveUpdateEntry'  : saveUpdateEntry,
 			'convertToUTC'     : convertToUTC,
 			'getHours'         : getHours,
 			'getMinutes'       : getMinutes,

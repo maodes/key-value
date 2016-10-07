@@ -63,7 +63,7 @@ describe( 'homeFactory test', function () {
 
 	describe( 'convertToUTC method', function () {
 		it( 'should convert date into utc format', function () {
-			expect( factory.convertToUTC( 'Oct 6 2016' ) ).equal( 1475683200 );
+			expect( factory.convertToUTC( 'Oct 6 2016' ) ).equal( '1475683200' );
 		} );
 	} );
 
@@ -75,16 +75,6 @@ describe( 'homeFactory test', function () {
 			};
 
 			expect( factory.cleanData( data ).value ).equal( undefined );
-		} );
-
-		it( 'should remove dateTime if it is an empty string', function () {
-			var data = {
-				'key'      : 'Yoda',
-				'value'    : 'Train you must',
-				'dateTime' : ''
-			};
-
-			expect( factory.cleanData( data ).dateTime ).equal( undefined );
 		} );
 	} );
 
