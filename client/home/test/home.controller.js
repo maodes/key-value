@@ -16,15 +16,11 @@ describe( 'HomeCtrl unit test', function () {
 		} );
 
 		it( 'should trigger homeFactory methods for the date and time', function () {
-			var getMonthsSpy  = sinon.spy( factory, 'getMonths' );
-			var getDaysSpy    = sinon.spy( factory, 'getDays' );
 			var getHoursSpy   = sinon.spy( factory, 'getHours' );
-			var getSecondsSpy = sinon.spy( factory, 'getSeconds' );
+			var getSecondsSpy = sinon.spy( factory, 'getMinutes' );
 
 			controller.activate();
 
-			expect( getMonthsSpy.callCount ).equal( 1 );
-			expect( getDaysSpy.callCount ).equal( 1 );
 			expect( getHoursSpy.callCount ).equal( 1 );
 			expect( getSecondsSpy.callCount ).equal( 1 );
 		} );
@@ -34,6 +30,14 @@ describe( 'HomeCtrl unit test', function () {
 		it( 'should trigger api', function () {
 			var spy = sinon.stub( factory, 'submitEntry' );
 			controller.submitEntry();
+			expect( spy.callCount ).equal( 1 );
+		} );
+	} );
+
+	describe( 'getDate method', function () {
+		it( 'should return date with correct format', function () {
+			var spy = sinon.stub( factory, 'convertToDisplay' );
+			controller.getDate();
 			expect( spy.callCount ).equal( 1 );
 		} );
 	} );

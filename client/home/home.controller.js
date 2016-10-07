@@ -9,19 +9,24 @@
 			homeFactory.submitEntry();
 		}
 
+		function getDate () {
+			return homeFactory.convertToDisplay( self.date );
+		}
+		
+
 		function activate () {
 			self.ctrlName   = 'HomeCtrl';
 			self.key        = '';
 			self.value      = '';
 			self.year       = '';
-			self.timePeriod = [ 'am', 'pm' ];
+			self.date       = new Date();
+			self.timePeriod = [ 'AM', 'PM' ];
 			// get values from factory so that controller won't be bloated
-			self.months  = homeFactory.getMonths();
-			self.days    = homeFactory.getDays();
 			self.hours   = homeFactory.getHours();
-			self.seconds = homeFactory.getSeconds();
+			self.minutes = homeFactory.getMinutes();
 
 			self.submitEntry = submitEntry;
+			self.getDate     = getDate;
 		}
 
 		// expose activate for test purposes

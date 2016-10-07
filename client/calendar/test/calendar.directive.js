@@ -13,6 +13,6 @@ describe( 'calendar directive test', function () {
 	} ) );
 
 	it( 'should successfully rendered', function () {
-		expect( template.isolateScope().model ).equal( 'Oct 06 2016' );
+		expect( template.isolateScope().vm.model ).equal( 'Oct 06 2016' );
 	} );
 } );

@@ -3,8 +3,11 @@
 
 	function calendar () {
 		return {
-			'templateUrl' : '/calendar/calendar.html',
-			'scope'       : {
+			'templateUrl'      : '/calendar/calendar.html',
+			'controller'       : 'CalendarCtrl',
+			'controllerAs'     : 'vm',
+			'bindToController' : true,
+			'scope'            : {
 				'model' : '='
 			}
 		};

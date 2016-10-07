@@ -9,7 +9,7 @@
 					<form data-ng-submit="vm.submit()">
 						<div class="form-group">
 							<label>Key</label>
-							<input class="form-control" placeholder="Key" data-ng-model="vm.key">
+							<input class="form-control" placeholder="Key" data-ng-model="vm.key" required>
 						</div>
 						<div class="form-group">
 							<label>Value</label>
@@ -20,8 +20,44 @@
 								<input type="checkbox" data-ng-model="vm.includeDate"> Include Date
 							</label>
 						</div>
-
-						<calendar></calendar>
+						<div class="row" data-ng-if="vm.includeDate">
+							<div class="col-lg-6">
+								<calendar model="vm.date"></calendar>
+							</div>
+							<div class="col-lg-6">
+								<div>
+									{{vm.getDate()}}
+								</div>
+								<div class="dropdown time-dropdown">
+									<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										{{ vm.selectedHour || 'H' }}
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+										<li data-ng-repeat="hour in vm.hours" data-ng-click="vm.selectedHour = hour"><a>{{hour}}</a></li>
+									</ul>
+								</div>
+								<span>:</span>
+								<div class="dropdown time-dropdown">
+									<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										{{ vm.selectedMin || 'm' }}
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+										<li data-ng-repeat="min in vm.minutes" data-ng-click="vm.selectedMin = min"><a>{{min}}</a></li>
+									</ul>
+								</div>
+								<div class="dropdown time-dropdown">
+									<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										{{ vm.selectedPeriod || 'AM/PM' }}
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+										<li data-ng-repeat="period in vm.timePeriod" data-ng-click="vm.selectedPeriod = period"><a>{{period}}</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
 						<button type="submit" class="btn btn-default">Submit</button>
 					</form>
 				</div>

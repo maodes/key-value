@@ -9,41 +9,6 @@ describe( 'homeFactory test', function () {
 		factory = homeFactory;
 	} ) );
 
-	describe( 'getMonths method', function () {
-		it( 'should return an array that contains months', function () {
-			var data = factory.getMonths();
-
-			expect( data.length ).equal( 12 );
-			expect( data[ 0 ] ).equal( 'Jan' );
-			expect( data[ 1 ] ).equal( 'Feb' );
-			expect( data[ 2 ] ).equal( 'Mar' );
-			expect( data[ 3 ] ).equal( 'Apr' );
-			expect( data[ 4 ] ).equal( 'May' );
-			expect( data[ 5 ] ).equal( 'Jun' );
-			expect( data[ 6 ] ).equal( 'Jul' );
-			expect( data[ 7 ] ).equal( 'Aug' );
-			expect( data[ 8 ] ).equal( 'Sep' );
-			expect( data[ 9 ] ).equal( 'Oct' );
-			expect( data[ 10 ] ).equal( 'Nov' );
-			expect( data[ 11 ] ).equal( 'Dec' );
-		} );
-	} );
-
-	describe( 'getDays method', function () {
-		it( 'should return an array that contains days', function () {
-			var data = factory.getDays();
-
-			expect( data.length ).equal( 7 );
-			expect( data[ 0 ] ).equal( 'Sun' );
-			expect( data[ 1 ] ).equal( 'Mon' );
-			expect( data[ 2 ] ).equal( 'Tue' );
-			expect( data[ 3 ] ).equal( 'Wed' );
-			expect( data[ 4 ] ).equal( 'Thu' );
-			expect( data[ 5 ] ).equal( 'Fri' );
-			expect( data[ 6 ] ).equal( 'Sat' );
-		} );
-	} );
-
 	describe( 'getHours method', function () {
 		it( 'should return an array that contains hours', function () {
 			var data = factory.getHours();
@@ -52,9 +17,9 @@ describe( 'homeFactory test', function () {
 		} );
 	} );
 
-	describe( 'getSeconds method', function () {
+	describe( 'getMinutes method', function () {
 		it( 'should return an array that contains hours', function () {
-			var data = factory.getSeconds();
+			var data = factory.getMinutes();
 
 			expect( data.length ).equal( 60 );
 		} );
@@ -120,6 +85,12 @@ describe( 'homeFactory test', function () {
 			};
 
 			expect( factory.cleanData( data ).dateTime ).equal( undefined );
+		} );
+	} );
+
+	describe( 'convertToDisplay method', function () {
+		it( 'should convert date to correct format', function () {
+			expect( factory.convertToDisplay( '2016-10-06T17:00:00+08:00' ) ).equal( 'Thu Oct 06 2016' );
 		} );
 	} );
 } );

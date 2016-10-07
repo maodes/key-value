@@ -2,15 +2,8 @@
 	'use strict';
 
 	function homeFactory ( moment ) {
-		function getMonths () {
-			return [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
-		}
 
-		function getDays () {
-			return [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ];
-		}
-
-		function getSeconds () {
+		function getMinutes () {
 			var secArr = [];
 			var i      = 0;
 
@@ -64,16 +57,19 @@
 			apiActions[ Number( !data.value ) ]();
 		}
 
+		function convertToDisplay ( date ) {
+			return moment( date ).format( 'ddd MMM DD YYYY' );
+		}
+
 		return {
-			'submitEntry'     : submitEntry,
-			'getEntry'        : angular.noop,
-			'saveUpdateEntry' : angular.noop,
-			'convertToUTC'    : convertToUTC,
-			'getHours'        : getHours,
-			'getSeconds'      : getSeconds,
-			'getMonths'       : getMonths,
-			'getDays'         : getDays,
-			'cleanData'       : cleanData
+			'submitEntry'      : submitEntry,
+			'getEntry'         : angular.noop,
+			'saveUpdateEntry'  : angular.noop,
+			'convertToUTC'     : convertToUTC,
+			'getHours'         : getHours,
+			'getMinutes'       : getMinutes,
+			'cleanData'        : cleanData,
+			'convertToDisplay' : convertToDisplay
 		};
 	}
 
