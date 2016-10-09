@@ -8,13 +8,18 @@ module.exports = function ( req, res ) {
 
 	function updateEntry () {
 		return db( 'Entries' )
-			.where( 'key', req.body.key )
-			.update( req.body );
+			.where( {
+				'key'       : req.body.key,
+				'timestamp' : req.body.timestamp
+			} )
+			.update( req.body )
+			.returning( [ 'key', 'value', 'timestamp' ] );
 	}
 
 	function insertData () {
 		return db( 'Entries' )
-			.insert( req.body );
+			.insert( req.body )
+			.returning( [ 'key', 'value', 'timestamp' ] );
 	}
 
 	function findEntry () {
@@ -28,15 +33,22 @@ module.exports = function ( req, res ) {
 
 	function noEntry () {
 		insertData()
-			.then( function () {
-				res.status( 200 ).send( { 'message' : 'Added New Entry' } );
+			.then( function ( result ) {
+				res.status( 200 ).send( { 
+					'message' : 'Added New Entry',
+					'data'    : result[ 0 ]
+				} );
 			}, catchError );
 	}
 
 	function hasEntry () {
 		updateEntry()
-			.then( function () {
-				res.status( 200 ).send( { 'message' : 'Updated Entry' } );
+			.then( function ( result ) {
+				res.status( 200 )
+					.send( { 
+						'message' : 'Updated Entry',
+						'data'    : result[ 0 ]
+					} );
 			}, catchError );
 	}
 

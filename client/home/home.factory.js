@@ -46,8 +46,12 @@
 		}
 
 		function getEntry ( data ) {
-			// TODO: make api call here
-			return data;
+			var apiActions = {
+				'0' : apiFactory.getWithTimestamp,
+				'1' : apiFactory.getWithoutTimestamp
+			};
+
+			return apiActions[ Number( !data.timestamp ) ].get( data ).$promise;
 		}
 
 		function submitEntry ( data ) {

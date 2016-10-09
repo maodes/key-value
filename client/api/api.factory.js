@@ -7,8 +7,23 @@
 			return $resource( '/api/v1/entry' );
 		}
 
+		function getWithoutTimestamp () {
+			return $resource( '/api/v1/entry/:key', {
+				'key' : '@key' 
+			} );
+		}
+
+		function getWithTimestamp () {
+			return $resource( '/api/v1/entry/:key/timestamp/:timestamp', {
+				'key'       : '@key',
+				'timestamp' : '@timestamp'
+			} );
+		}
+
 		return {
-			'saveEntry' : saveEntry()
+			'saveEntry'           : saveEntry(),
+			'getWithoutTimestamp' : getWithoutTimestamp(),
+			'getWithTimestamp'    : getWithTimestamp()
 		};
 	}
 

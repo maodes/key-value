@@ -24,7 +24,7 @@
 			homeFactory.submitEntry( data )
 				.then( function ( res ) {
 					self.outputMessage = res.message;
-					self.output        = data;	
+					self.output        = res.data;
 				} )
 				.catch( function ( err ) {
 					console.log( err );

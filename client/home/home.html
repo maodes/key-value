@@ -74,12 +74,8 @@
 						<label>Value</label>
 						<p>{{vm.output.value || ''}}</p>
 					</div>
-					<div data-ng-if="vm.includeDate">
+					<div data-ng-if="vm.includeDate && vm.output.timestamp">
 						<label>Unix Timestamp</label>
-						<p>{{vm.output.timestamp || ''}}</p>
-					</div>
-					<div data-ng-if="vm.includeDate">
-						<label>Date</label>
 						<p>{{vm.output.timestamp || ''}}</p>
 					</div>
 				</div> 
