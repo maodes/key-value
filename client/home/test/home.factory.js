@@ -39,15 +39,15 @@ describe( 'homeFactory test', function () {
 		} );
 
 		it( 'should trigger saveUpdateEntry when key and value or timestamp are present', function () {
-			var spy  = sinon.spy( factory, 'saveUpdateEntry' );
+			var saveSpy    = sinon.spy( factory, 'saveUpdateEntry' );
 			var data = {
-				'key'      : 'Jedi',
-				'value'    : 'Obi Wan',
-				'dateTime' : 'Oct 6 2016'
+				'key'       : 'Jedi',
+				'value'     : 'Obi Wan',
+				'timestamp' : 'Oct 6 2016'
 			};
 
 			factory.submitEntry( data );
-			expect( spy.callCount ).equal( 1 );
+			expect( saveSpy.callCount ).equal( 1 );
 		} );
 
 		it( 'should trigger getEntry when only key ( with/without timestamp) is provided', function () {

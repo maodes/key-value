@@ -1,10 +1,10 @@
 ( function () {
 	'use strict';
 
-	function homeFactory ( moment ) {
+	function homeFactory ( moment, apiFactory ) {
 
 		function getMinutes () {
-			var secArr = [];
+			var minArr = [];
 			var i      = 0;
 
 			for( i; i < 60; i++ ) {
@@ -12,10 +12,10 @@
 					i = '0' + i;
 				}
 
-				secArr.push( i );
+				minArr.push( i );
 			}
 
-			return secArr;
+			return minArr;
 		}
 
 		function getHours () {
@@ -42,8 +42,7 @@
 		}
 
 		function saveUpdateEntry ( data ) {
-			// TODO: make api call here
-			return data;
+			return apiFactory.saveEntry.save( data ).$promise;
 		}
 
 		function getEntry ( data ) {
@@ -59,12 +58,11 @@
 
 			data = cleanData( data );
 
-			if ( data.dateTime ) {
-				data.dateTime = convertToUTC( data.dateTime );
+			if ( data.timestamp ) {
+				data.timestamp = this.convertToUTC( data.timestamp );
 			}
 
-			// TODO: this should return a promise
-			apiActions[ Number( !data.value ) ]();
+			return apiActions[ Number( !data.value ) ]( data );
 		}
 
 		function convertToDisplay ( date ) {

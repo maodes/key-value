@@ -64,6 +64,23 @@
 				<div class="col-lg-6">
 					<h4>Output</h4>
 					<hr>
+					<h4>{{vm.outputMessage}}</h4>
+					<div>
+						<label>Key</label>
+						<p>{{vm.output.key || ''}}</p>
+					</div>
+					<div>
+						<label>Value</label>
+						<p>{{vm.output.value || ''}}</p>
+					</div>
+					<div data-ng-if="vm.includeDate">
+						<label>Unix Timestamp</label>
+						<p>{{vm.output.timestamp || ''}}</p>
+					</div>
+					<div data-ng-if="vm.includeDate">
+						<label>Date</label>
+						<p>{{vm.output.timestamp || ''}}</p>
+					</div>
 				</div> 
 			</div>
 		</div>

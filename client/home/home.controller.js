@@ -4,21 +4,31 @@
 	function HomeCtrl ( homeFactory ) {
 		var self = this;
 
-		function includeDateTime ( data ) {
+		function includeDateTime () {
+			var timestamp = null;
+
 			if ( self.includeDate ) {
-				data.dateTime = homeFactory.convertToDisplay( self.date ) + ' ' + self.selectedHour + ':' + self.selectedMin + ' ' + self.selectedPeriod;
+				timestamp = homeFactory.convertToDisplay( self.date ) + ' ' + self.selectedHour + ':' + self.selectedMin + ' ' + self.selectedPeriod;
 			}
+
+			return timestamp;
 		}
 
 		function submitEntry () {
 			var data = {
-				'key'   : self.key,
-				'value' : self.value
+				'key'       : self.key,
+				'value'     : self.value,
+				'timestamp' : includeDateTime()
 			};
 
-			includeDateTime( data );
-			// TODO: factory call in the next line should return a promise
-			homeFactory.submitEntry( data );
+			homeFactory.submitEntry( data )
+				.then( function ( res ) {
+					self.outputMessage = res.message;
+					self.output        = data;	
+				} )
+				.catch( function ( err ) {
+					console.log( err );
+				} );
 		}
 
 		function getDate () {
@@ -27,16 +37,18 @@
 		
 
 		function activate () {
-			self.ctrlName   = 'HomeCtrl';
-			self.key        = '';
-			self.value      = '';
-			self.year       = '';
-			self.date       = new Date();
-			self.timePeriod = [ 'AM', 'PM' ];
+			self.ctrlName      = 'HomeCtrl';
+			self.key           = '';
+			self.value         = '';
+			self.year          = '';
+			self.date          = new Date();
+			self.timePeriod    = [ 'AM', 'PM' ];
+			self.outputMessage = 'No Data. Please fill form on the right section and submit';
 			// get values from factory so that controller won't be bloated
 			self.hours   = homeFactory.getHours();
 			self.minutes = homeFactory.getMinutes();
 
+			// methods/functions
 			self.submitEntry     = submitEntry;
 			self.getDate         = getDate;
 			self.includeDateTime = includeDateTime;

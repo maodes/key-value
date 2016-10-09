@@ -1,13 +1,17 @@
 'use strict';
 
 describe( 'HomeCtrl unit test', function () {
-	var controller, factory;
+	var controller, factory, scope;
 
-	beforeEach( module( 'app' ) );
+	beforeEach( module( 'app', 'templates' ) );
 
-	beforeEach( inject( function ( $controller, homeFactory ) {
+	beforeEach( inject( function ( $controller, homeFactory, $rootScope ) {
 		factory    = homeFactory;
-		controller = $controller( 'HomeCtrl' );
+		scope = $rootScope.$new();
+		controller = $controller( 'HomeCtrl', {
+			'scope' : scope,
+			'homeFactory' : factory
+		} );
 	} ) );
 
 	describe( 'activate method', function () {
@@ -27,11 +31,33 @@ describe( 'HomeCtrl unit test', function () {
 	} );
 
 	describe( 'submitEntry method', function () {
-		it( 'should trigger api', function () {
-			var spy = sinon.stub( factory, 'submitEntry' );
+		it( 'should trigger api', inject( function ( $q ) {
+			var deferred = $q.defer();
+			deferred.resolve( { 'message' : 'Success' } );
+
+			sinon.stub( factory, 'submitEntry' ).returns( deferred.promise );
 			controller.submitEntry();
-			expect( spy.callCount ).equal( 1 );
-		} );
+
+			scope.$apply();
+			expect( controller.outputMessage ).equal( 'Success' );
+
+			factory.submitEntry.restore();
+		} ) );
+
+		it( 'should catch error', inject( function ( $q ) {
+			var deferred = $q.defer();
+
+			controller.outputMessage = 'No Data';
+			deferred.reject();
+
+			sinon.stub( factory, 'submitEntry' ).returns( deferred.promise );
+			controller.submitEntry();
+
+			scope.$apply();
+			expect( controller.outputMessage ).equal( 'No Data' );
+
+			factory.submitEntry.restore();
+		} ) );
 	} );
 
 	describe( 'getDate method', function () {
@@ -44,15 +70,14 @@ describe( 'HomeCtrl unit test', function () {
 
 	describe( 'includeDateTime method', function () {
 		it( 'should include dateTime when includeDate is checked', function () {
-			var data = {};
 
 			controller.includeDate    = true;
 			controller.date           = '2016-10-06T17:00:00+08:00';
 			controller.selectedHour   = '1';
 			controller.selectedMin    = '09';
 			controller.selectedPeriod = 'AM';
-			controller.includeDateTime( data );
-			expect( data.dateTime ).not.equal( undefined );
+
+			expect( controller.includeDateTime() ).not.equal( null );
 		} );
 	} );
 } );
