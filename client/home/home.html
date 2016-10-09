@@ -58,7 +58,8 @@
 								</div>
 							</div>
 						</div>
-						<button type="submit" class="btn btn-default" ng-disabled="keyValForm.$invalid">Submit</button>
+						<button type="submit" class="btn btn-default" ng-disabled="keyValForm.$invalid || vm.checkSelectedTime()" data-ng-if="vm.includeDate">Submit</button>
+						<button type="submit" class="btn btn-default" ng-disabled="keyValForm.$invalid" data-ng-if="!vm.includeDate">Submit</button>
 					</form>
 				</div>
 				<div class="col-lg-6">

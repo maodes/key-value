@@ -34,6 +34,10 @@
 		function getDate () {
 			return homeFactory.convertToDisplay( self.date );
 		}
+
+		function checkSelectedTime () {
+			return !self.selectedHour || !self.selectedMin || !self.selectedPeriod;
+		}
 		
 
 		function activate () {
@@ -49,9 +53,10 @@
 			self.minutes = homeFactory.getMinutes();
 
 			// methods/functions
-			self.submitEntry     = submitEntry;
-			self.getDate         = getDate;
-			self.includeDateTime = includeDateTime;
+			self.submitEntry       = submitEntry;
+			self.getDate           = getDate;
+			self.includeDateTime   = includeDateTime;
+			self.checkSelectedTime = checkSelectedTime;
 		}
 
 		// expose activate for test purposes

@@ -80,4 +80,16 @@ describe( 'HomeCtrl unit test', function () {
 			expect( controller.includeDateTime() ).not.equal( null );
 		} );
 	} );
+
+	describe( 'checkSelectedTime method', function () {
+		it( 'should return true when none or one of the dropdowns are selected', function () {
+			expect( controller.checkSelectedTime() ).equal( true );
+		} );
+		it( 'should return false when all of the dropdowns are selcted', function () {
+			controller.selectedPeriod = 'AM';
+			controller.selectedMin    = '01';
+			controller.selectedHour   = '02';
+			expect( controller.checkSelectedTime() ).equal( false );
+		} );
+	} );
 } );
