@@ -3,7 +3,7 @@
 		<h3>Key Value Store</h3>
 		<div class="io-container">
 			<div class="row io-inner-container">
-				<div class="col-lg-6 io-left-section">
+				<div class="col-lg-6 col-md-6 io-left-section">
 					<h4>Input</h4>
 					<hr>
 					<form data-ng-submit="vm.submitEntry()" name="keyValForm">
@@ -20,49 +20,50 @@
 								<input type="checkbox" data-ng-model="vm.includeDate"> Include Date
 							</label>
 						</div>
-						<div class="row" data-ng-if="vm.includeDate">
-							<div class="col-lg-6">
-								<calendar model="vm.date"></calendar>
-							</div>
-							<div class="col-lg-6">
+						<div data-ng-if="vm.includeDate">
+							<div>
 								<div>
 									{{vm.getDate()}}
 								</div>
-								<div class="dropdown time-dropdown">
-									<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-										{{ vm.selectedHour || 'H' }}
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-										<li data-ng-repeat="hour in vm.hours" data-ng-click="vm.selectedHour = hour"><a>{{hour}}</a></li>
-									</ul>
+								<div class="dropdown-container">
+									<div class="dropdown time-dropdown form-group">
+										<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+											{{ vm.selectedHour || 'HH' }}
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu">
+											<li data-ng-repeat="hour in vm.hours" data-ng-click="vm.selectedHour = hour"><a>{{hour}}</a></li>
+										</ul>
+									</div>
+									<span>:</span>
+									<div class="dropdown time-dropdown">
+										<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+											{{ vm.selectedMin || 'mm' }}
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+											<li data-ng-repeat="min in vm.minutes" data-ng-click="vm.selectedMin = min"><a>{{min}}</a></li>
+										</ul>
+									</div>
+									<div class="dropdown time-dropdown">
+										<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+											{{ vm.selectedPeriod || 'AM/PM' }}
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+											<li data-ng-repeat="period in vm.timePeriod" data-ng-click="vm.selectedPeriod = period"><a>{{period}}</a></li>
+										</ul>
+									</div>
 								</div>
-								<span>:</span>
-								<div class="dropdown time-dropdown">
-									<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-										{{ vm.selectedMin || 'm' }}
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-										<li data-ng-repeat="min in vm.minutes" data-ng-click="vm.selectedMin = min"><a>{{min}}</a></li>
-									</ul>
-								</div>
-								<div class="dropdown time-dropdown">
-									<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-										{{ vm.selectedPeriod || 'AM/PM' }}
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-										<li data-ng-repeat="period in vm.timePeriod" data-ng-click="vm.selectedPeriod = period"><a>{{period}}</a></li>
-									</ul>
-								</div>
+								<calendar model="vm.date"></calendar>
+
 							</div>
 						</div>
 						<button type="submit" class="btn btn-default" ng-disabled="keyValForm.$invalid || vm.checkSelectedTime()" data-ng-if="vm.includeDate">Submit</button>
 						<button type="submit" class="btn btn-default" ng-disabled="keyValForm.$invalid" data-ng-if="!vm.includeDate">Submit</button>
 					</form>
 				</div>
-				<div class="col-lg-6">
+				<div class="col-lg-6 col-md-6">
 					<h4>Output</h4>
 					<hr>
 					<h4>{{vm.outputMessage}}</h4>

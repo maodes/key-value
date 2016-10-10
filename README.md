@@ -20,6 +20,7 @@ A web app that uses technologies:
 1. Karma
 2. Chai
 3. Sinon
+4. PhantomJs
 
 **Linting**
 
@@ -39,14 +40,14 @@ A web app that uses technologies:
 * enter date and time -- *optional*
 
 When key entered is not in the database and the value is provided, it will save the entry. If the key exists in the database, it will update the value of that row.
-*Please see README.md in this link for more info*
+*Please see this [README.md](https://github.com/maodes/key-value/blob/master/services/handlers/README.md) for more info*
 
 
 ##Development
 
 Clone this repository and install dependencies
 
-**Note:** Local machine should have NodeJS, Bower, and Postgresql installed.
+**Note:** Local machine should have NodeJS, Bower, Phantomjs and Postgresql installed.
 
 ***Please create a database in Postgresql and name it "Entries"***
 
