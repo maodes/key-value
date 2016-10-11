@@ -3,11 +3,11 @@ module.exports = {
 	'development' : {
 		'client'     : 'postgresql',
 		'connection' : {
-			'database' : 'KeyValue',
-			'user'     : 'postgres',
-			'password' : 'postgres',
-			'port'     : 5433,
-			'host'     : '127.0.0.1'
+			'database' : 'da5f7lmli1a0du',
+			'user'     : 'ztrehmxzpqwixu',
+			'password' : '9ajd9XvnQLpQYaE8sr9FOgnIp4',
+			'port'     : 5432,
+			'host'     : 'ec2-54-243-55-26.compute-1.amazonaws.com'
 		},
 
 		'pool' : {

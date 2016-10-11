@@ -14,7 +14,7 @@ app.use( methodOverride() );
 app.use( '/bower_components', express.static( 'bower_components' ) );
 
 // listen (start app with node server.js) ======================================
-app.listen( 8080 );
+app.listen( process.env.PORT || 8080 );
 console.log( 'App listening on port 8080' );
 
 require( './db' );
