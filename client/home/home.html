@@ -15,49 +15,10 @@
 							<label>Value</label>
 							<input class="form-control"  placeholder="Value" data-ng-model="vm.value">
 						</div>
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" data-ng-model="vm.includeDate"> Include Date
-							</label>
-						</div>
-						<div data-ng-if="vm.includeDate">
-							<div>
-								<div>
-									{{vm.getDate()}}
-								</div>
-								<div class="dropdown-container">
-									<div class="dropdown time-dropdown form-group">
-										<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-											{{ vm.selectedHour || 'HH' }}
-											<span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu">
-											<li data-ng-repeat="hour in vm.hours" data-ng-click="vm.selectedHour = hour"><a>{{hour}}</a></li>
-										</ul>
-									</div>
-									<span>:</span>
-									<div class="dropdown time-dropdown">
-										<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-											{{ vm.selectedMin || 'mm' }}
-											<span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-											<li data-ng-repeat="min in vm.minutes" data-ng-click="vm.selectedMin = min"><a>{{min}}</a></li>
-										</ul>
-									</div>
-									<div class="dropdown time-dropdown">
-										<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-											{{ vm.selectedPeriod || 'AM/PM' }}
-											<span class="caret"></span>
-										</button>
-										<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-											<li data-ng-repeat="period in vm.timePeriod" data-ng-click="vm.selectedPeriod = period"><a>{{period}}</a></li>
-										</ul>
-									</div>
-								</div>
-								<calendar model="vm.date"></calendar>
 
-							</div>
+						<div class="form-group">
+							<label>Timestamp</label>
+							<input class="form-control"  placeholder="Timestamp" data-ng-model="vm.timestamp" type="number">
 						</div>
 						<button type="submit" class="btn btn-default" ng-disabled="keyValForm.$invalid || vm.checkSelectedTime()" data-ng-if="vm.includeDate">Submit</button>
 						<button type="submit" class="btn btn-default" ng-disabled="keyValForm.$invalid" data-ng-if="!vm.includeDate">Submit</button>
@@ -75,7 +36,7 @@
 						<label>Value</label>
 						<p>{{vm.output.value || ''}}</p>
 					</div>
-					<div data-ng-if="vm.includeDate && vm.output.timestamp">
+					<div>
 						<label>Unix Timestamp</label>
 						<p>{{vm.output.timestamp || ''}}</p>
 					</div>

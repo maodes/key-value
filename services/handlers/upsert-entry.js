@@ -2,6 +2,9 @@
 
 var db = require( '../../db.js' ); // database connection
 module.exports = function ( req, res ) {
+
+	var key = Object.keys( req.body )[ 0 ];
+
 	function catchError ( err ) {
 		res.status( 500 ).send( 'Request error: ' + err );
 	}
@@ -9,16 +12,21 @@ module.exports = function ( req, res ) {
 	function updateEntry () {
 		return db( 'Entries' )
 			.where( {
-				'key'       : req.body.key,
-				'timestamp' : req.body.timestamp
+				'key' : key
 			} )
-			.update( req.body )
+			.update( {
+				'value' : req.body[ key ]
+			} )
 			.returning( [ 'key', 'value', 'timestamp' ] );
 	}
 
 	function insertData () {
 		return db( 'Entries' )
-			.insert( req.body )
+			.insert( {
+				'key'       : key,
+				'value'     : req.body[ key ],
+				'timestamp' : new Date().getTime()
+			} )
 			.returning( [ 'key', 'value', 'timestamp' ] );
 	}
 
@@ -26,8 +34,7 @@ module.exports = function ( req, res ) {
 		return db( 'Entries' )
 			.select()
 			.where( {
-				'key'       : req.body.key,
-				'timestamp' : req.body.timestamp || null
+				'key' : key
 			} );
 	}
 

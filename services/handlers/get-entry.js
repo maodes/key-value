@@ -4,9 +4,12 @@ var db = require( '../../db.js' );
 
 module.exports = function ( req, res ) {
 	var reqData = {
-		'key'       : req.params.key,
-		'timestamp' : req.params.timestamp || null
+		'key' : req.params.key
 	};
+
+	if ( req.params.timestamp ) {
+		reqData.timestamp = req.params.timestamp;
+	}
 
 	function getEntry () {
 		return db( 'Entries' )

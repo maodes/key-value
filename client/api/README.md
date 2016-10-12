@@ -15,7 +15,19 @@ Save or update entry in the database. logic for saving and updating is in the [u
 
 **value** - ```string```
 
-**timestamp** - ```integer```, ```unix timestamp```, or ```null```
+```
+{
+	key : value
+}
+```
+
+example:
+
+```
+{
+	'Jedi' : 'Skywalker'
+}
+```
 
 
 #### *getWithoutTimestamp*

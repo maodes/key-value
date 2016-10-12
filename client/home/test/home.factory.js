@@ -9,31 +9,13 @@ describe( 'homeFactory test', function () {
 		factory = homeFactory;
 	} ) );
 
-	describe( 'getHours method', function () {
-		it( 'should return an array that contains hours', function () {
-			var data = factory.getHours();
-
-			expect( data.length ).equal( 12 );
-		} );
-	} );
-
-	describe( 'getMinutes method', function () {
-		it( 'should return an array that contains hours', function () {
-			var data = factory.getMinutes();
-
-			expect( data.length ).equal( 60 );
-		} );
-	} );
-
 	describe( 'getEntry method', function () {
-		// TODO: refactor test once backend is ready
 		it( 'should exists', function () {
 			expect( factory.getEntry ).not.equal( undefined );
 		} );
 	} );
 
 	describe( 'submitEntry method', function () {
-		// TODO: refactor test once backend is ready
 		it( 'should exists', function () {
 			expect( factory.submitEntry ).not.equal( undefined );
 		} );
@@ -61,12 +43,6 @@ describe( 'homeFactory test', function () {
 		} );
 	} );
 
-	describe( 'convertToUTC method', function () {
-		it( 'should convert date into utc format', function () {
-			expect( factory.convertToUTC( 'Oct 6 2016' ) ).equal( '1475683200' );
-		} );
-	} );
-
 	describe( 'cleanData method', function () {
 		it( 'should remove value if it is an empty string', function () {
 			var data = {
@@ -78,9 +54,15 @@ describe( 'homeFactory test', function () {
 		} );
 	} );
 
-	describe( 'convertToDisplay method', function () {
-		it( 'should convert date to correct format', function () {
-			expect( factory.convertToDisplay( '2016-10-06T17:00:00+08:00' ) ).equal( 'Thu Oct 06 2016' );
+	describe( 'restructureJSON method', function () {
+		it( 'should be able to restructure json before saving', function () {
+			var data = {
+				'key'       : 'Jedi',
+				'value'     : 'Kenobi'
+			};
+
+			expect( Object.keys( factory.restructureJSON( data ) )[ 0 ] ).equal( 'Jedi' );
+			expect( factory.restructureJSON( data )[ 'Jedi' ] ).equal( 'Kenobi' );
 		} );
 	} );
 } );

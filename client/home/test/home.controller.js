@@ -7,7 +7,7 @@ describe( 'HomeCtrl unit test', function () {
 
 	beforeEach( inject( function ( $controller, homeFactory, $rootScope ) {
 		factory    = homeFactory;
-		scope = $rootScope.$new();
+		scope      = $rootScope.$new();
 		controller = $controller( 'HomeCtrl', {
 			'scope' : scope,
 			'homeFactory' : factory
@@ -17,16 +17,6 @@ describe( 'HomeCtrl unit test', function () {
 	describe( 'activate method', function () {
 		it( 'should be successfully created', function () {
 			expect( controller ).not.equal( undefined );
-		} );
-
-		it( 'should trigger homeFactory methods for the date and time', function () {
-			var getHoursSpy   = sinon.spy( factory, 'getHours' );
-			var getSecondsSpy = sinon.spy( factory, 'getMinutes' );
-
-			controller.activate();
-
-			expect( getHoursSpy.callCount ).equal( 1 );
-			expect( getSecondsSpy.callCount ).equal( 1 );
 		} );
 	} );
 
@@ -60,36 +50,15 @@ describe( 'HomeCtrl unit test', function () {
 		} ) );
 	} );
 
-	describe( 'getDate method', function () {
-		it( 'should return date with correct format', function () {
-			var spy = sinon.stub( factory, 'convertToDisplay' );
-			controller.getDate();
-			expect( spy.callCount ).equal( 1 );
+	describe( 'includeTimestamp', function () {
+		it( 'should return null if timestamp input field is empty or timestamp provided is invalid', function () {
+			controller.timestamp = null;
+			expect( controller.includeTimestamp() ).equal( null );
 		} );
-	} );
 
-	describe( 'includeDateTime method', function () {
-		it( 'should include dateTime when includeDate is checked', function () {
-
-			controller.includeDate    = true;
-			controller.date           = '2016-10-06T17:00:00+08:00';
-			controller.selectedHour   = '1';
-			controller.selectedMin    = '09';
-			controller.selectedPeriod = 'AM';
-
-			expect( controller.includeDateTime() ).not.equal( null );
-		} );
-	} );
-
-	describe( 'checkSelectedTime method', function () {
-		it( 'should return true when none or one of the dropdowns are selected', function () {
-			expect( controller.checkSelectedTime() ).equal( true );
-		} );
-		it( 'should return false when all of the dropdowns are selcted', function () {
-			controller.selectedPeriod = 'AM';
-			controller.selectedMin    = '01';
-			controller.selectedHour   = '02';
-			expect( controller.checkSelectedTime() ).equal( false );
+		it( 'should return the timestamp if the timestamp provided is valid', function () {
+			controller.timestamp = new Date().getTime();
+			expect( controller.includeTimestamp() ).equal( controller.timestamp );
 		} );
 	} );
 } );
