@@ -14,14 +14,15 @@ module.exports = function ( req, res ) {
 	function getEntry () {
 		return db( 'Entries' )
 			.where( reqData )
-			.select();
+			.select()
+			.orderBy( 'timestamp', 'desc' );
 	}
 
 	getEntry()
 		.then( function ( result ) {
 			res.status( 200 ).send( {
 				'message' : result.length > 0 ? 'Got one' : 'Got none',
-				'data'    : result[ 0 ] || {}
+				'data'    : result[ 0 ] || {} // get only the latest
 			} );
 		} )
 		.catch( function ( err ) {

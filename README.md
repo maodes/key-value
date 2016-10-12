@@ -32,14 +32,13 @@ A web app that uses technologies:
 ***Saving an entry***
 * enter key
 * enter value
-* enter date and time -- *optional*
 * click submit
 
 ***Getting an entry***
 * enter key
-* enter date and time -- *optional*
+* enter timestamp -- *optional*
 
-When key entered is not in the database and the value is provided, it will save the entry. If the key exists in the database, it will update the value of that row.
+When key entered is not in the database and the value is provided, it will save the entry. If the key exists in the database, it will add a new entry with the new value and generate a new timestamp.
 *Please see this [README.md](https://github.com/maodes/key-value/blob/master/services/handlers/README.md) for more info*
 
 

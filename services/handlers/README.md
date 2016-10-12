@@ -10,16 +10,12 @@ Request parameters needed:
 1. key -- *required*
 2. timestamp -- *either a unix timestamp or null*
 
-Request will return the entire row of the key if the key and its corresponding timestamp exists. Row includes: ```key, value, timestamp```
+Request will return the row corresponding to the key and timestamp. If timestamp is not given, the latest, it will return the row with the latest update. Row includes: ```key, value, timestamp```
 
 
-## upsert-entry.js
+## insert-entry.js
 
-Updates the entry or saves an entry if it doesn't.
-
-* Checks the key and its corresponding timestamp ( either unix timestamp or null ) if it exists in the database.
-* Saves the entry if the combination of the key and timestamp does not exist in the database
-* Updates the value of the entry if the combination of the key and timestamp exists in the database.
+Saves an entry.
 
 Request parameters needed:
 1. key -- *required*
